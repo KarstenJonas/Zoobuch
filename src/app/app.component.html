@@ -1,0 +1,72 @@
+<!-- Container für die gesamte Seite -->
+<div class="container">
+
+  <!-- Große Überschrift -->
+  <div class="display-4">
+    {{title}}
+  </div>
+  
+  <!-- Horizontale Linie -->
+  <hr>
+
+  <!-- Karte für das Hinzufügen eines neuen Tiers -->
+  <div class="card">
+
+    <!-- Kopfzeile der Karte -->
+    <div class="card-header">
+      <h5>Neues Tier hinzufügen</h5>
+    </div>
+
+    <!-- Körper der Karte für das Formular zum Hinzufügen eines neuen Tiers -->
+    <div class="card-body d-flex flex-column">
+      <!-- Flexbox-Container mit Spalte für die Eingabefelder -->
+      
+      <!-- Eingabefeld für die Suche -->
+      <input class="form-control mb-2" type="text" [(ngModel)]="searchQuery" placeholder="Suche nach Tieren">
+      <!-- Button zum suchen eines Tiers -->
+      <button class="btn btn-primary mb-2" (click)="searchAnimals()">+ Suchen</button>
+
+      <!-- Eingabefeld für den Namen des neuen Tiers -->
+      <input class="form-control mb-2" type="text" [(ngModel)]="newAnimal.name" placeholder="Name">
+      <!-- Eingabefeld für den Typ des neuen Tiers -->
+      <input class="form-control mb-2" type="text" [(ngModel)]="newAnimal.type" placeholder="Type">
+      <!-- Button zum Hinzufügen des neuen Tiers -->
+      <button class="btn btn-primary mb-2" (click)="addAnimal()">+ Hinzufügen</button>
+    </div>
+  
+  
+
+  </div>
+  
+  <!-- Abstand zur nächsten Karte -->
+  <!-- mt-4: Margin Top 4 -->
+  <div class="card mt-4"> 
+
+    <!-- Kopfzeile der Karte -->
+    <div class="card-header">
+      <h5>Auflistung aller Tiere</h5>
+    </div>
+
+    <!-- Körper der Karte für die Liste aller Tiere -->
+    <div class="card-body">
+      <!-- *ngFor-Schleife durch alle Tiere -->
+      <div *ngFor="let animal of (searchQuery ? filteredAnimals : animals)">
+        <div>
+          <!-- Anzeige des Namens und Typs des Tiers -->
+          {{animal.name}} ({{animal.type}})
+
+          <!-- In der Schleife zur Anzeige der Tiere -->
+          <button class="btn btn-info btn-sm" (click)="editAnimal(animal)">Bearbeiten</button>
+      
+          <!-- Button zum Löschen des Tiers -->
+          <button class="btn btn-danger btn-sm" (click)="deleteAnimal(animal)">Löschen</button>
+      
+        </div>
+        <!-- Horizontale Linie zwischen den Tieren -->
+        <hr>
+      </div>
+    </div>
+
+  </div>
+  
+</div>
